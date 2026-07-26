@@ -16,5 +16,6 @@ likeButtons.forEach(button => {
 );
 });
 
+// Автоматическая подстановка текущего года в футер
 const currentYear = new Date().getFullYear();
-document.getElementById('current-yer').textContent = currentYear;
+document.getElementById('current-year').textContent = currentYear;
