@@ -1,0 +1,146 @@
+/* 1. CSS Переменные (Дизайн-токены). В стартапе цвета и шрифты хранят тут */
+:root {
+    --color-primary: #6F4E37; /* Кофейный */
+    --color-accent: #D4A373;  /* Карамельный */
+    --color-bg: #FAFAFA;      /* Фон */
+    --color-text: #1A1A1A;    /* Темный текст */
+    --container-width: 1200px;
+}
+
+/* 2. Сброс отступов (База) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Чтобы padding не увеличивал общую ширину элемента */
+}
+
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+}
+
+/* 3. Универсальный контейнер */
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 20px; /* На мобилках контент не прилипнет к краям экрана */
+}
+
+/* ========================================
+   ШАПКА (HEADER)
+   ======================================== */
+.header {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: white;
+    border-bottom: 1px solid #eee; /* Едва заметная граница */
+}
+
+/* Flex-контейнер для шапки. Расталкивает логотип и меню по краям */
+.header__inner {
+    display: flex;
+    justify-content: space-between; /* Один элемент слева, другой справа */
+    align-items: center; /* Выравнивание по вертикали по центру */
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+/* Навигация */
+.nav__list {
+    display: flex;
+    list-style: none; /* Убираем точки у списка */
+    gap: 30px; /* Равномерный отступ между пунктами меню (современный подход вместо margin) */
+}
+
+.nav__link {
+    text-decoration: none;
+    color: var(--color-text);
+    font-weight: 500;
+    transition: color 0.2s ease; /* Плавное изменение цвета при наведении (анимация) */
+}
+
+/* Состояние при наведении (Hover) */
+.nav__link:hover {
+    color: var(--color-accent);
+}
+
+/* ========================================
+   ГЛАВНЫЙ ЭКРАН (HERO)
+   ======================================== */
+.hero {
+    padding-top: 100px;
+    padding-bottom: 100px;
+    background: linear-gradient(135deg, #f5f5f5 0%, #e8e0d8 100%); /* Легкий градиент */
+}
+
+.hero__title {
+    font-size: 48px;
+    line-height: 1.2; /* Межстрочный интервал для заголовков */
+    margin-bottom: 20px;
+    max-width: 600px;
+}
+
+.hero__text {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 40px;
+    max-width: 500px;
+}
+
+/* ========================================
+   КНОПКА (Блок с модификатором)
+   ======================================== */
+.button {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px; /* Скругление углов */
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+/* Модификатор: главная кнопка */
+.button_primary {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+/* Анимация при наведении на кнопку */
+.button_primary:hover {
+    background-color: #5a3e2c; /* Чуть темнее */
+    box-shadow: 0 4px 15px rgba(111, 78, 55, 0.3); /* Тень под кнопкой */
+}
+
+/* Анимация при клике (Active) */
+.button_primary:active {
+    transform: scale(0.98); /* Кнопка чуть-чуть уменьшается, будто на нее нажали физически */
+}
+
+/* ========================================
+   АДАПТИВ (Mobile First - правим то, что ломается на мобилках)
+   ======================================== */
+@media (max-width: 768px) {
+    /* На мобилках заголовок меньше */
+    .hero__title {
+        font-size: 32px;
+    }
+
+    /* Меню в шапке на мобилке обычно прячут (будет иконка бургера), 
+       но пока мы просто уменьшим отступы и выровняем по центру */
+    .header__inner {
+        flex-direction: column; /* Элементы встают друг под другом */
+        gap: 15px;
+    }
+    
+    .hero {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+}
