@@ -144,3 +144,110 @@ body {
         padding-bottom: 50px;
     }
 }
+
+/* ========================================
+   СЕКЦИЯ МЕНЮ (CSS GRID)
+   ======================================== */
+.section-title {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 50px;
+}
+
+.menu {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.menu__grid {
+    /* МАГИЯ АДАПТИВА БЕЗ MEDIA QUERY */
+    display: grid;
+    /* auto-fit — создает столько колонок, сколько влезет на экран */
+    /* minmax(280px, 1fr) — каждая колонка минимум 280px, а если место осталось, тянутся поровну (1fr) */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px; /* Отступ между карточками и по горизонтали, и по вертикали */
+}
+
+/* Карточка */
+.card {
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden; /* Обрезаем картинку по краям карточки */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Мягкая тень для объема */
+    display: flex;
+    flex-direction: column; /* Контент внутри карточки выстраивается столбиком */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Эффект наведения на карточку */
+.card:hover {
+    transform: translateY(-5px); /* Приподнимаем карточку вверх */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Картинка товара */
+.card__image {
+    width: 100%;
+    height: 200px;
+    background-color: #e0e0e0; /* Фон, пока картинки нет */
+    background-size: cover;
+    background-position: center;
+}
+
+/* Заглушки-цвета вместо реальных картинок (в реальности тут url('image.jpg') */
+.card__image_cappuccino { background-color: #D4A373; }
+.card__image_latte { background-color: #E9C46A; }
+.card__image_americano { background-color: #6F4E37; }
+
+/* Текстовая часть карточки */
+.card__body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Заставляет body растягиваться, занимая всё место карточки */
+}
+
+.card__title {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.card__text {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    flex-grow: 1; /* Прижимает цену и кнопку к низу карточки, даже если тексты разной длины */
+}
+
+/* Низ карточки */
+.card__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card__price {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+/* Модификатор кнопки (маленькая) */
+.button_small {
+    padding: 8px 15px;
+    font-size: 14px;
+    background-color: #f0f0f0;
+    color: var(--color-text);
+}
+
+.button_small:hover {
+    background-color: #e0e0e0;
+    box-shadow: none;
+}
+
+/* Состояние "активный лайк" (для JS) */
+.card__like_active {
+    background-color: var(--color-accent);
+    color: white;
+}
