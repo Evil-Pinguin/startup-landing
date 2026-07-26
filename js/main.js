@@ -15,3 +15,6 @@ likeButtons.forEach(button => {
     }
 );
 });
+
+const currentYear = new Date().getFullYear();
+document.getElementById('current-yer').textContent = currentYear;
